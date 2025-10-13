@@ -17,36 +17,42 @@
             box-sizing: border-box;
         }
 
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
         }
 
-        /* Default: static for all */
+        /* Apply background and text color for ALL screens */
         header {
-            position: static;
-            top: auto;
+            background: linear-gradient(135deg, #0047AB 0%, #003380 100%);
+            color: white;
+            padding: 1rem 0;
         }
 
-        /* Only sticky on desktop */
-        @media (min-width: 769px) {
+        /* Default: header scrolls normally on mobile */
+        @media (max-width: 768px) {
             header {
-                position: static;
+                position: static; /* scroll normally */
                 top: auto;
-                background: linear-gradient(135deg, #0047AB 0%, #003380 100%); /* keep same gradient */
-                color: white; /* force text white */
-                padding: 1rem 0; /* consistent spacing */
             }
 
             nav a {
-                color: white; /* force links white */
+                color: white; /* ensure links stay white */
             }
 
             nav a.cta-button {
-                background: white; 
+                background: white;
                 color: #dc143c;
+            }
+        }
+
+        /* Desktop: sticky header */
+        @media (min-width: 769px) {
+            header {
+                position: sticky;
+                top: 0;
+                z-index: 1000;
             }
         }
 
