@@ -43,6 +43,12 @@
             border-bottom: 4px solid #dc143c;
         }
 
+        @media (max-width: 768px) {
+            header {
+                position: static; /* not sticky on mobile */
+            }
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
