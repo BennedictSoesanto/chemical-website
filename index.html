@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT. Sinarkimia Utama - A Chemical Distribution Company</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0047AB 0%, #003380 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 4px solid #dc143c;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+        }
+
+        .company-name h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .company-name p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        nav a.cta-button {
+            background: white;
+            color: #dc143c;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        nav a.cta-button:hover {
+            background: #f0f0f0;
+            color: #b01030;
+            transform: scale(1.05);
+            border-bottom: none;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+            border-bottom: 2px solid #dc143c;
+        }
+
+        .hero {
+            padding: 30px 20px;
+            text-align: center;
+            color: #0047AB;
+            background: linear-gradient(-45deg, #f5f7fa, #c3cfe2, #e0eafc, #c3cfe2);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeSlide 1.5s ease forwards;
+            opacity: 0;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            animation: fadeSlide 2s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        section {
+            padding: 60px 20px;
+            scroll-margin-top: 80px;
+        }
+
+        section:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #0047AB;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        #about {
+            position: relative;
+            padding: 80px 20px;
+        }
+
+        #about::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url('images/company.jpg') center/cover no-repeat;
+            opacity: 0.25; /* only affects background */
+            z-index: 0;
+            pointer-events: none; /* lets you interact with content */
+        }
+
+       .about-box {
+            position: relative;
+            z-index: 1; /* ensures it stays above background */
+            background: white; /* fully opaque */
+            border-radius: 12px;
+            padding: 30px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .about-box h2 {
+            color: #0047AB;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .about-box p {
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .industry-card {
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            padding: 0; /* text-box handles padding now */
+            height: 260px;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end; /* text at bottom */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .industry-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 1; /* full color now */
+            z-index: 0;
+        }
+
+        .text-box {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 1); /* solid white box */
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 15px;
+            text-align: left;
+        }
+
+        .text-box h3 {
+            margin: 0 0 8px;
+            color: #000; /* black title */
+        }
+
+        .text-box p {
+            margin: 0;
+            color: #333; /* dark gray for paragraph */
+            font-size: 0.95rem;
+        }
+
+        /* On hover, make the card pop and the image slightly more visible */
+        .industry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+
+        .industry-card:hover::before {
+            opacity: 0.4;
+        }
+
+        /* Keep text readable */
+        .industry-card h3 {
+            position: relative;
+            z-index: 1;
+            color: #000; /* Black color for titles */
+            text-shadow: none; /* remove shadow for black text */
+        }
+
+        .industry-card p {
+            position: relative;
+            z-index: 1;
+            color: #000; /* keep description text white */
+            text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+        }
+
+        .industry-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+
+        /* 🔥 Individual background images */
+        .textile::before { background-image: url('images/textile.jpg'); }
+        .building_materials::before { background-image: url('images/building_materials.jpg'); }
+        .water_treatment::before { background-image: url('images/water_treatment.jpg'); }
+        .mineral_mining::before { background-image: url('images/mineral_mining.jpg'); }
+        .food_feed::before { background-image: url('images/food_feed.jpg'); }
+        .personal_care::before { background-image: url('images/personal_care.jpg'); }
+        .pulp_paper::before { background-image: url('images/pulp_paper.jpg'); }
+        .metal_treatment::before { background-image: url('images/metal_treatment.jpg'); }
+        .rubber_leather::before { background-image: url('images/rubber_leather.jpg'); }
+        .oil_gas::before { background-image: url('images/oil_gas.jpg'); }
+        .agro_chemicals::before { background-image: url('images/agro_chemicals.jpg'); }
+        .poultry::before { background-image: url('images/poultry.jpg'); }
+
+        .product-search {
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .product-search input {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .product-search input:focus {
+            border-color: #0047AB;
+        }
+
+        .product-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            align-items: start; /* ensures all top align */
+            margin-top: 40px;
+        }
+
+        .product-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            align-items: stretch; /* force all boxes in each row to equal height */
+            margin-top: 40px;
+        }
+
+        /* category card box */
+        .category {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            height: 420px; /* 🔥 fixed uniform height for all cards */
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .category:hover {
+            transform: translateY(-3px);
+            border-left: 4px solid #dc143c;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* sticky title header */
+        .category h3 {
+            color: #0047AB;
+            font-size: 1.05rem;
+            margin: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dc143c;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* scrollable list area */
+        .category ul {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-right: 10px;
+            margin-top: 10px;
+
+            /* 🔥 Hide scrollbar but keep scroll functionality */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+        .category ul::-webkit-scrollbar {
+            display: none; /* Chrome, Safari */
+        }
+        .category ul::-webkit-scrollbar-thumb {
+            background-color: #0047AB;
+            border-radius: 4px;
+        }
+        .category ul::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .category li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.95rem;
+        }
+
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .contact-card h3 {
+            color: #0047AB;
+            margin-bottom: 15px;
+        }
+
+        .contact-card p {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="logo.jpg" alt="Sinarkimia Logo" class="logo">
+                    <div class="company-name">
+                        <h1>PT. SINARKIMIA UTAMA</h1>
+                        <p>A Chemical Distribution Company</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#industries">Industries</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#contact" class="cta-button">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Creating Solutions For The Customer's Needs</h2>
+            <p>Your trusted partner in chemical distribution across Indonesia since 1996</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="about-box">
+                <h2>About Us</h2>
+                <p style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1rem; line-height: 1.8;">
+                    PT Sinarkimia Utama (SKU) is one of Indonesia's respected manufacturers and distributors of basic and specialty chemicals, serving various industries. Established in 1996, the company now has offices in Jakarta, Surabaya and Medan.
+                </p>
+                <p style="max-width: 800px; margin: 20px auto 0; text-align: center; font-size: 1.1rem; line-height: 1.8;">
+                    With over 200 chemical products, SKU distributes to more than 3.000 customers across a wide spectrum of Indonesian industries. As a private company group that has successfully undertaken business in Indonesia, SKU strives to further enhance its performance, professionalism and technology.
+                </p>
+                <p style="max-width: 800px; margin: 20px auto 0; text-align: center; font-size: 1.1rem; line-height: 1.8;">
+                    This commitment allows it to provide the utmost service to its business partners and customers and to support the country's development in general. SKU is an evolving company that embraces change, understands trends and anticipates opportunities.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="industries">
+        <div class="container">
+            <h2>Industries We Serve</h2>
+            <div class="industries-grid">
+            <div class="industry-card textile">
+                <div class="text-box">
+                <h3>Textile</h3>
+                <p>Solutions for textile manufacturing</p>
+                </div>
+            </div>
+            <div class="industry-card building_materials">
+                <div class="text-box">
+                <h3>Building Materials</h3>
+                <p>Concrete, paint, and coating chemicals</p>
+                </div>
+            </div>
+            <div class="industry-card water_treatment">
+                <div class="text-box">
+                <h3>Water Treatment</h3>
+                <p>Water purification and boiler treatment chemicals</p>
+                </div>
+            </div>
+            <div class="industry-card mineral_mining">
+                <div class="text-box">
+                <h3>Mineral & Mining</h3>
+                <p>Specialized chemicals for mining operations</p>
+                </div>
+            </div>
+            <div class="industry-card food_feed">
+                <div class="text-box">
+                <h3>Food & Feed</h3>
+                <p>Food-grade chemicals and feed additives</p>
+                </div>
+            </div>
+            <div class="industry-card personal_care">
+                <div class="text-box">
+                <h3>Personal Care</h3>
+                <p>Ingredients for cosmetics and home care products</p>
+                </div>
+            </div>
+            <div class="industry-card pulp_paper">
+                <div class="text-box">
+                <h3>Pulp & Paper</h3>
+                <p>Chemicals for paper production and adhesives</p>
+                </div>
+            </div>
+            <div class="industry-card metal_treatment">
+                <div class="text-box">
+                <h3>Metal Treatment</h3>
+                <p>Electroplating and metal finishing chemicals</p>
+                </div>
+            </div>
+            <div class="industry-card rubber_leather">
+                <div class="text-box">
+                <h3>Rubber & Leather</h3>
+                <p>Masterbatch and rubber processing chemicals</p>
+                </div>
+            </div>
+            <div class="industry-card oil_gas">
+                <div class="text-box">
+                <h3>Oil & Gas</h3>
+                <p>Chemicals for petroleum industry</p>
+                </div>
+            </div>
+            <div class="industry-card agro_chemicals">
+                <div class="text-box">
+                <h3>Agro Chemicals</h3>
+                <p>Fertilizers and agricultural chemicals</p>
+                </div>
+            </div>
+            <div class="industry-card poultry">
+                <div class="text-box">
+                <h3>Poultry</h3>
+                <p>Hatchery and poultry farming chemicals</p>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products">
+        <div class="container">
+            <h2>Our Products</h2>
+            <div class="product-search">
+                <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
+            </div>
+            <div class="product-categories">
+                <div class="category">
+                    <h3>Textile Chemicals</h3>
+                    <ul>
+                    <li>Ammonium Chloride Tech Grade</li>
+                    <li>Ammonium Persulfate</li>
+                    <li>Caustic Soda Flake 99%</li>
+                    <li>Caustic Soda Micropearl</li>
+                    <li>Diethanolamine (DEA)</li>
+                    <li>EDTA-2Na</li>
+                    <li>EDTA-4Na</li>
+                    <li>Formic Acid 90%</li>
+                    <li>Glacial Acetic Acid</li>
+                    <li>Glyoxal</li>
+                    <li>Hydrogen Peroxide</li>
+                    <li>NP-4 / NP-9 / NP-10 Nonylphenol Ethoxylates</li>
+                    <li>Oxalic Acid</li>
+                    <li>Potassium Hydroxide (KOH)</li>
+                    <li>Potassium Permanganate</li>
+                    <li>Resist Salt (Granule / Powder)</li>
+                    <li>Soda Ash (Dense / Light)</li>
+                    <li>Sodium Acetate</li>
+                    <li>Sodium Hydrosulfite</li>
+                    <li>Sodium Metasilicate (Anhydrous / Pentahydrate)</li>
+                    <li>Sodium Percarbonate</li>
+                    <li>Sodium Sulphate</li>
+                    <li>STPP Tech Grade</li>
+                    <li>Tri Sodium Phosphate (TSP)</li>
+                    <li>Zinc Chloride</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Construction & Coatings</h3>
+                    <ul>
+                    <li>Butyl Acetate AR Grade</li>
+                    <li>Calcium Chloride 74% Tech</li>
+                    <li>Calcium Chloride 94% Tech</li>
+                    <li>Calcium Nitrate</li>
+                    <li>Magnesium Chloride</li>
+                    <li>Magnesium Oxide 65% / 85%</li>
+                    <li>Melamine</li>
+                    <li>Oxalic Acid</li>
+                    <li>Phosphoric Acid Tech Grade</li>
+                    <li>Sodium Gluconate</li>
+                    <li>Titanium Dioxide Anatase / K100</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Water Treatment</h3>
+                    <ul>
+                    <li>Ammonium Bisulfite</li>
+                    <li>ATMP 50%</li>
+                    <li>BHMTMPA</li>
+                    <li>Calcium Chloride 74% Tech</li>
+                    <li>Calcium Chloride 94% Tech</li>
+                    <li>Calcium Hypochlorite</li>
+                    <li>Calcium Nitrate</li>
+                    <li>Caustic Soda Flake 99%</li>
+                    <li>Caustic Soda Micropearl</li>
+                    <li>DTPMPA</li>
+                    <li>EDTA-2Na / EDTA-4Na</li>
+                    <li>Ferric Chloride</li>
+                    <li>Ferrous Sulphate (20% Heptahydrate / Monohydrate)</li>
+                    <li>Hydrogen Peroxide</li>
+                    <li>HEDP</li>
+                    <li>HPMA</li>
+                    <li>Isothiazolinones</li>
+                    <li>Magnesium Chloride</li>
+                    <li>PAC Yellow / Drinking Water Grade</li>
+                    <li>Potassium Permanganate</li>
+                    <li>SDIC 60% (Granular / Powder)</li>
+                    <li>SHMP</li>
+                    <li>SHS Flake 70%</li>
+                    <li>Soda Ash (Dense/Light)</li>
+                    <li>Sodium Hypochlorite</li>
+                    <li>Sodium Gluconate</li>
+                    <li>Sodium Sulfite 98%</li>
+                    <li>Sodium Thiosulphate</li>
+                    <li>STTP Technical</li>
+                    <li>TCCA 90% (Granular / Tablet / Powder)</li>
+                    <li>Tri Sodium Phosphate (TSP)</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Mineral & Mining</h3>
+                    <ul>
+                    <li>Activated Carbon - Premium</li>
+                    <li>Ammonium Nitrate 99%</li>
+                    <li>Copper Sulphate 24.5% min</li>
+                    <li>Hydrogen Peroxide</li>
+                    <li>Nitric Acid 68%</li>
+                    <li>Sodium Sulphide 60%</li>
+                    <li>Sodium Silicate</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Food & Feed</h3>
+                    <ul>
+                    <li>Choline Chloride 60% Corn Cob</li>
+                    <li>Citric Acid (Anhydrous / Monohydrous)</li>
+                    <li>Corn Starch</li>
+                    <li>Dextrose Monohydrate</li>
+                    <li>Dicalcium Phosphate (Feed Grade)</li>
+                    <li>Dipotassium Phosphate (Feed Grade)</li>
+                    <li>Disodium Phosphate (Feed Grade)</li>
+                    <li>Maltodextrine</li>
+                    <li>Mono Calcium Phosphate (Feed Grade)</li>
+                    <li>Mono Sodium Phosphate (MSP Food Grade)</li>
+                    <li>Phosphoric Acid, Food Grade 85%</li>
+                    <li>Potato Starch</li>
+                    <li>Potassium Chloride Food Grade</li>
+                    <li>Potassium Sorbate</li>
+                    <li>Sodium Acid Pyro Phosphate (SAPP Food Grade)</li>
+                    <li>Sodium Benzoate</li>
+                    <li>Sodium Bicarbonate Maland</li>
+                    <li>Sodium Hexametaphosphate (SHMP Food Grade)</li>
+                    <li>Sodium Tripolyphosphate (STPP Food Grade)</li>
+                    <li>Tri Calcium Phosphate (TCP Food Grade)</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Personal Care & Home Care</h3>
+                    <ul>
+                    <li>Citric Acid (Anhydrous / Monohydrous)</li>
+                    <li>Detergent Powder 16</li>
+                    <li>Diethanolamine (DEA)</li>
+                    <li>EDTA-2NA</li>
+                    <li>EDTA-4NA</li>
+                    <li>Isothiazolinones</li>
+                    <li>Monoethanolamine</li>
+                    <li>NP-4 Nonylphenol Ethoxylate</li>
+                    <li>NP-9 Nonylphenol Ethoxylate</li>
+                    <li>NP-10 Nonylphenol Ethoxylate</li>
+                    <li>Potassium Hydroxide (KOH)</li>
+                    <li>SLES 70%</li>
+                    <li>Silica Gel White (2–5 mm, 0.5–1.5 mm)</li>
+                    <li>Sodium Benzoate</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Adhesives, Pulp & Paper</h3>
+                    <ul>
+                    <li>Ammonium Chloride</li>
+                    <li>Ammonium Persulfate</li>
+                    <li>Citric Acid, Anhydrous</li>
+                    <li>Citric Acid, Monohydrous</li>
+                    <li>Formic Acid</li>
+                    <li>Glyoxal</li>
+                    <li>Hydrogen Peroxide</li>
+                    <li>Hexamine</li>
+                    <li>Melamine</li>
+                    <li>N-Methyl Pyrrolidone (NMP)</li>
+                    <li>SHMP</li>
+                    <li>Sodium Acetate</li>
+                    <li>Sodium Bicarbonate</li>
+                    <li>Sodium Hydrosulfite</li>
+                    <li>Sodium Sulfite 98%</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Metal Treatment & Electroplating</h3>
+                    <ul>
+                    <li>Ammonium BiFluoride</li>
+                    <li>Ammonium Chloride Tech Grade</li>
+                    <li>Barium Chloride</li>
+                    <li>Ferric Chloride</li>
+                    <li>Hydrofluoric Acid</li>
+                    <li>Nitric Acid 68%</li>
+                    <li>Oxalic Acid</li>
+                    <li>Sodium Nitrite</li>
+                    <li>Sodium Thiosulphate</li>
+                    <li>Zinc Chloride</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Masterbatch, Rubber & Leather</h3>
+                    <ul>
+                        <li>Barium Nitrate</li>
+                        <li>Formic Acid 90%</li>
+                        <li>Hexamine</li>
+                        <li>Paraffin Wax Semi-Refined</li>
+                        <li>SN Flake Yellow</li>
+                        <li>SHS Flake 70%</li>
+                        <li>Sodium Bicarbonate</li>
+                        <li>Titanium Dioxide Anatase / K100</li>
+                    </ul>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Oil & Gas</h3>
+                    <ul>
+                        <li>Ammonium Bisulfite 65%</li>
+                        <li>Caustic Soda Flake 99%</li>
+                        <li>Diethanolamine (DEA) 99%</li>
+                        <li>Monoethanolamine (MEA) 99%</li>
+                        <li>Sodium Metabisulfite 97%</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Agrochemicals & Fertilizer</h3>
+                    <ul>
+                        <li>Calcium Nitrate</li>
+                        <li>Copper Sulphate</li>
+                        <li>Di Ammonium Phosphate</li>
+                        <li>Ferrous Sulphate (Heptahydrate / Monohydrate)</li>
+                        <li>Magnesium Sulphate</li>
+                        <li>Manganese Sulphate</li>
+                        <li>Phosphoric Acid, Tech Grade</li>
+                        <li>Potassium Hydroxide (KOH)</li>
+                        <li>Potassium Nitrate</li>
+                        <li>Semirefined Paraffin Wax</li>
+                        <li>Sodium Sulphate</li>
+                        <li>Zinc Sulphate 20%</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Poultry & Hatchery</h3>
+                    <ul>
+                        <li>Calcium Chloride (Feed Grade)</li>
+                        <li>Choline Chloride 60%</li>
+                        <li>Calcium Hypochlorite (kaporite 65%)</li>
+                        <li>Formaline 37%</li>
+                        <li>Potassium Permanganate</li>
+                        <li>TCCA Granular</li>
+                        <li>TCCA Tablet 200 gr</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 40px; font-size: 1.1rem;">
+                <strong>Need a complete product list?</strong> Contact our sales team for detailed specifications and pricing.
+            </p>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>📍 Jakarta Office</h3>
+                    <p><strong>Address:</strong><br>
+                    Jl. Daan Mogot KM 18.5<br>
+                    Semanan Megah Raya Kav. 37<br>
+                    Jakarta 11850, Indonesia</p>
+                    <p><strong>Phone:</strong> +62 21 54377905</p>
+                </div>
+                <div class="contact-card">
+                    <h3>📍 Surabaya Office</h3>
+                    <p><strong>Address:</strong><br>
+                    Kawasan Industri Suri Mulia Permai<br>
+                    Jl. Margomulyo 44 Kav. M-4<br>
+                    Surabaya 60183, Indonesia</p>
+                    <p><strong>Phone:</strong> +62 31 7482390</p>
+                </div>
+                <div class="contact-card">
+                    <h3>📍 Medan Office</h3>
+                    <p><strong>Address:</strong><br>
+                    Kawasan Industri Medan II<br>
+                    Gudang Multiguna No.53<br>
+                    Mabar - Medan, Indonesia</p>
+                    <p><strong>Phone:</strong> +62 61 6871424</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <p style="font-size: 1.2rem;"><strong>Sales Inquiries:</strong></p>
+                <p style="font-size: 1.1rem; margin-top: 10px; color: #0047AB;">
+                    sales@pt-sku.com
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PT. Sinarkimia Utama. All rights reserved.</p>
+            <p style="margin-top: 10px;">Creating Solutions For The Customer's Needs</p>
+        </div>
+    </footer>
+
+    <script>
+        function searchProducts() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const categories = document.querySelectorAll('.category');
+            
+            categories.forEach(category => {
+                const items = category.querySelectorAll('li');
+                let hasVisibleItem = false;
+                
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(filter)) {
+                        item.style.display = '';
+                        hasVisibleItem = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                category.style.display = hasVisibleItem || filter === '' ? '' : 'none';
+            });
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
