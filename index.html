@@ -11,25 +11,21 @@
             box-sizing: border-box;
         }
 
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
         }
 
-        /* Default: static for all */
         header {
-            position: static;
-        }
-
-        /* Only sticky on desktop */
-        @media (min-width: 769px) {
-            header {
-                position: sticky;
-                top: 0;
-                z-index: 1000;
-            }
+            background: linear-gradient(135deg, #0047AB 0%, #003380 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 4px solid #dc143c;
         }
 
         .container {
